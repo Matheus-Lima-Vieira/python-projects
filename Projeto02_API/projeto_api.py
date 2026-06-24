@@ -9,7 +9,8 @@ print(x.status_code)
 print (x.json())
 Exemplo de funcionalidade
 """
-cep_1 = input(("Olá! Digite o CEP que deseja procurar: "))
+#\n pula uma linha, pode ser no começo ou final (precisa ser colocado dentro das aspas)
+cep_1 = input(("Olá! Digite o CEP que deseja procurar: \n"))
 cep_2 = re.sub('[^0-9]', '', cep_1)
 
 response = requests.get(f"https://viacep.com.br/ws/{cep_2}/json/")

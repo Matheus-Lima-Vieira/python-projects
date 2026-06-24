@@ -1,0 +1,59 @@
+Projeto 03 - Catálogo de Filmes
+Objetivo
+
+Criar um sistema simples de cadastro de filmes utilizando:
+
+Listas
+Dicionários
+Laços de repetição
+Condições (if)
+Menu interativo
+Funcionalidades obrigatórias
+Menu principal
+
+Exibir continuamente:
+
+===== CATÁLOGO DE FILMES =====
+
+1 - Adicionar filme
+2 - Listar filmes
+3 - Sair
+
+Escolha uma opção:
+Opção 1 - Adicionar filme
+
+Solicitar:
+
+Nome do filme:
+Ano:
+Nota:
+
+Exemplo:
+
+Nome do filme: Alien
+Ano: 1979
+Nota: 10
+
+Guardar os dados em uma estrutura.
+
+Estrutura esperada
+
+filmes = [
+    {
+        "nome": "Alien",
+        "ano": 1979,
+        "nota": 10
+    }
+]
+
+Opção 2 - Listar filmes
+
+Exibir:
+
+===== FILMES CADASTRADOS =====
+
+Alien (1979) - Nota: 10
+O Enigma de Outro Mundo (1982) - Nota: 9
+Opção 3 - Sair
+
+Opção 3 - Encerrar o programa.

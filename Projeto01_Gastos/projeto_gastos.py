@@ -2,18 +2,18 @@
 Gerar uma estrutura que armazene os dados:
 Salario, quantidade de gastos, gastos, valores dos gastos
 '''
+#\n pula uma linha, pode ser no começo ou final (precisa ser colocado dentro das aspas)
+salario = float(input("Olá, informe seu salário: \n"))
 
-salario = float(input("Olá, informe seu salário: "))
-
-quant_gasto = int(input("Diga quantos gastos terá: "))
+quant_gasto = int(input("Diga quantos gastos terá: \n"))
 
 lista = []
 
 gasto_total = 0
 
 for i in range(quant_gasto):
-    gasto = input("Nome do gasto: ")
-    valor = float(input("Qual o valor do gasto? "))
+    gasto = input("Nome do gasto: \n")
+    valor = float(input("Qual o valor do gasto? \n"))
     lista.append([gasto,valor])
     gasto_total = valor + gasto_total
     
