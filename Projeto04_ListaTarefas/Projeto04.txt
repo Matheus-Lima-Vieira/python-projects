@@ -1,0 +1,72 @@
+=========================================
+PROJETO 04 - LISTA DE TAREFAS
+=========================================
+
+OBJETIVO
+
+Desenvolver um sistema de gerenciamento de tarefas utilizando Python no terminal.
+
+O sistema deve permitir adicionar, listar e remover tarefas através de um menu interativo.
+
+-----------------------------------------
+MENU
+-----------------------------------------
+
+===== LISTA DE TAREFAS =====
+
+1 - Adicionar tarefa
+
+2 - Listar tarefas
+
+3 - Remover tarefa
+
+4 - Sair
+
+-----------------------------------------
+FUNCIONALIDADES
+-----------------------------------------
+
+✔ Adicionar uma nova tarefa
+
+✔ Listar todas as tarefas cadastradas
+
+✔ Remover uma tarefa pelo número
+
+✔ Encerrar o programa
+
+-----------------------------------------
+CONCEITOS PRATICADOS
+-----------------------------------------
+
+- Listas
+- append()
+- pop()
+- while
+- if / elif / else
+- for
+- enumerate()
+- len()
+- Validação de entrada
+- Manipulação de strings (strip() e lower())
+
+-----------------------------------------
+DESAFIOS
+-----------------------------------------
+
+✓ Listar as tarefas numeradas.
+
+✓ Remover utilizando a numeração exibida ao usuário.
+
+✓ Atualizar automaticamente a numeração após remover uma tarefa.
+
+✓ Tratar tentativas de remover tarefas inexistentes.
+
+-----------------------------------------
+OBJETIVO DE APRENDIZAGEM
+
+Treinar manipulação de listas e validação de dados, criando um sistema simples de gerenciamento de tarefas.
+
+-----------------------------------------
+STATUS
+
+✔ Projeto concluído.
