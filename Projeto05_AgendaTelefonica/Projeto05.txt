@@ -1,0 +1,103 @@
+=========================================
+PROJETO 05 - AGENDA DE CONTATOS
+=========================================
+
+OBJETIVO
+
+Desenvolver um sistema de Agenda de Contatos utilizando Python no terminal.
+
+O usuário poderá cadastrar pessoas, visualizar todos os contatos,
+buscar um contato específico e remover contatos.
+
+-----------------------------------------
+MENU
+-----------------------------------------
+
+===== AGENDA =====
+
+1 - Adicionar contato
+
+2 - Listar contatos
+
+3 - Buscar contato
+
+4 - Remover contato
+
+5 - Sair
+
+-----------------------------------------
+CADA CONTATO DEVE CONTER
+
+Nome
+
+Telefone
+
+E-mail
+
+-----------------------------------------
+FUNCIONALIDADES
+
+✔ Adicionar contatos
+
+✔ Listar todos os contatos
+
+✔ Buscar um contato pelo nome
+
+✔ Remover um contato
+
+✔ Encerrar o programa
+
+-----------------------------------------
+REGRAS
+
+A busca deve funcionar mesmo se o usuário digitar letras
+maiúsculas ou minúsculas.
+
+Exemplo:
+
+João
+joão
+JOÃO
+
+Todos devem localizar o mesmo contato.
+
+-----------------------------------------
+CONCEITOS QUE DEVEM SER PRATICADOS
+
+- Listas
+
+- Listas dentro de listas
+
+- for
+
+- if
+
+- while
+
+- append()
+
+- pop()
+
+- len()
+
+- enumerate()
+
+- strip()
+
+- lower()
+
+-----------------------------------------
+DESAFIO BÔNUS
+
+Ao listar os contatos:
+
+Nome: João Silva
+Telefone: (11) 99999-9999
+Email: joao@email.com
+
+Mostrar tudo organizado.
+
+-----------------------------------------
+OBJETIVO
+
+Praticar manipulação de listas contendo múltiplas informações.
