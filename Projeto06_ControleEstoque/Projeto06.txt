@@ -1,0 +1,190 @@
+=========================================
+Projeto 06 - Controle de Estoque
+=========================================
+
+Objetivo:
+Desenvolver um sistema de controle de estoque utilizando listas, menus e estruturas de repetição.
+
+Conceitos praticados:
+- Listas de listas
+- while
+- for
+- if / elif / else
+- Busca de informações
+- Alteração de dados existentes
+- Remoção de itens
+- Formatação de valores
+- Validação de entradas
+- Manipulação de índices
+
+=========================================
+MENU
+=========================================
+
+===== ESTOQUE =====
+
+1 - Adicionar produto
+2 - Listar produtos
+3 - Buscar produto
+4 - Atualizar quantidade
+5 - Remover produto
+6 - Sair
+
+=========================================
+ESTRUTURA DOS DADOS
+=========================================
+
+Cada produto deverá conter:
+
+- Nome
+- Quantidade
+- Preço
+
+Exemplo da lista:
+
+estoque = [
+    ["Mouse", 10, 89.90],
+    ["Teclado", 5, 199.90],
+    ["Monitor", 3, 899.90]
+]
+
+=========================================
+FUNCIONALIDADES
+=========================================
+
+1 - Adicionar Produto
+
+Solicitar:
+- Nome
+- Quantidade
+- Preço
+
+Adicionar à lista.
+
+
+-----------------------------------------
+
+2 - Listar Produtos
+
+Caso não exista nenhum produto:
+
+"Não há produtos cadastrados."
+
+Caso existam:
+
+Produto: Mouse
+Quantidade: 10
+Preço: R$ 89.90
+
+Produto: Monitor
+Quantidade: 3
+Preço: R$ 899.90
+
+
+-----------------------------------------
+
+3 - Buscar Produto
+
+Solicitar o nome do produto.
+
+Caso exista:
+
+Produto encontrado!
+
+Nome:
+Quantidade:
+Preço:
+
+Caso contrário:
+
+Produto não encontrado.
+
+
+-----------------------------------------
+
+4 - Atualizar Quantidade
+
+Solicitar o nome do produto.
+
+Se existir:
+
+Mostrar quantidade atual.
+
+Perguntar a nova quantidade.
+
+Atualizar apenas esse campo.
+
+Exibir:
+
+Quantidade atualizada com sucesso!
+
+
+Se não existir:
+
+Produto não encontrado.
+
+
+-----------------------------------------
+
+5 - Remover Produto
+
+Solicitar o nome do produto.
+
+Se encontrado:
+
+Remover da lista.
+
+Exibir:
+
+Produto removido com sucesso!
+
+
+Caso contrário:
+
+Produto não encontrado.
+
+
+-----------------------------------------
+
+6 - Encerrar
+
+Mensagem de despedida.
+
+=========================================
+DESAFIO EXTRA (OPCIONAL)
+=========================================
+
+Ao listar os produtos:
+
+Exibir também o valor total de cada produto.
+
+Exemplo:
+
+Produto: Mouse
+Quantidade: 10
+Preço: R$ 89.90
+Total: R$ 899.00
+
+
+Ao final da listagem:
+
+Valor total do estoque:
+
+R$ 4.398,75
+
+=========================================
+REGRAS
+=========================================
+
+✔ Não utilizar funções (def)
+✔ Não utilizar dicionários
+✔ Não utilizar arquivos
+✔ Utilizar apenas listas
+✔ Código organizado
+✔ Mensagens amigáveis ao usuário
+
+=========================================
+OBJETIVO DO PROJETO
+=========================================
+
+Aprender a alterar dados já existentes dentro de uma lista sem removê-los, praticando manipulação de índices, atualização de informações, formatação de valores e lógica de programação.
