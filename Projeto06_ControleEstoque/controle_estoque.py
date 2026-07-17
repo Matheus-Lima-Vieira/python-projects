@@ -51,10 +51,11 @@ while True:
         for produto in lista:
             if busca == produto[0]:
                 busca_produto = True
+                valor_item = produto[1] * produto[2]
                 print(("\nProduto encontrado! \n") +
                      (f"Produto: {produto[0]}\n") +
                      (f"Quantidade: {produto[1]:.0f}\n") +
-                     (f"Preço: {produto[2]:.2f}") +
+                     (f"Preço: {produto[2]:.2f}\n") +
                      (f"Valor total em estoque: R${valor_item:.2f}\n"))
                 break
         if not busca_produto:
@@ -85,6 +86,8 @@ while True:
                 elif subselecao == "3":
                     produto[2] = float(input("Qual o novo valor do produto?\n"))
                     print("Dados alterados com sucesso")
+                else:
+                    print("Opção inválida!")
 #==================================================================
     elif selecao == "5":
                 print("==== ESTOQUE ====")
