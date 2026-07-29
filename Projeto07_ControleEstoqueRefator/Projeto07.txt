@@ -1,0 +1,54 @@
+=========================================
+PROJETO 07 - REFATORAÇÃO COM FUNÇÕES (def)
+=========================================
+
+Objetivo:
+Refatorar o Projeto 06 utilizando funções (def), deixando o código mais organizado, legível e reutilizável.
+
+O que deve ser praticado:
+
+- Criar funções com def
+- Organizar o código em responsabilidades
+- Chamar funções pelo menu principal
+- Separar lógica de cada funcionalidade
+- Melhorar a legibilidade do código
+- Evitar repetição de código
+- Continuar utilizando listas, laços e condicionais
+
+Funcionalidades:
+
+[ ] Adicionar produto
+[ ] Listar produtos
+[ ] Buscar produto
+[ ] Alterar produto
+[ ] Remover produto
+[ ] Encerrar sistema
+
+Estrutura esperada:
+
+def menu()
+def adicionar_produto()
+def listar_produto()
+def buscar_produto()
+def alterar_produto()
+def excluir_produto()
+def encerrar()
+
+Conceitos praticados:
+
+- def
+- Escopo de funções
+- Organização do código
+- Reutilização
+- Listas
+- Listas de listas
+- for
+- if / elif / else
+- break
+- Validação de dados
+- Regex
+- Formatação de valores
+
+Objetivo concluído:
+
+Transformar um programa funcional em um código mais organizado, modular e preparado para crescer nos próximos projetos.
