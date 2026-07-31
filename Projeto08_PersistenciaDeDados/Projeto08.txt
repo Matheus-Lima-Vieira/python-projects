@@ -1,0 +1,94 @@
+=========================================
+PROJETO 08 - PERSISTÊNCIA DE DADOS
+=========================================
+
+Objetivo:
+
+Modificar o sistema de estoque para que os produtos sejam salvos em um arquivo de texto automaticamente.
+
+Ao iniciar o programa, o estoque deve ser carregado desse arquivo.
+
+=========================================
+
+Conceitos novos
+
+- open()
+- with
+- read()
+- write()
+- append (modo "a")
+- sobrescrever arquivo (modo "w")
+- leitura de arquivos
+- gravação de arquivos
+
+=========================================
+
+Regras
+
+Ao abrir o programa:
+
+✔ Ler o arquivo "estoque.txt"
+
+Se existir:
+
+Carregar todos os produtos para a lista.
+
+Se não existir:
+
+Começar com lista vazia.
+
+-----------------------------------------
+
+Sempre que adicionar um produto
+
+Salvar novamente o arquivo.
+
+-----------------------------------------
+
+Sempre que alterar um produto
+
+Salvar novamente o arquivo.
+
+-----------------------------------------
+
+Sempre que remover um produto
+
+Salvar novamente o arquivo.
+
+=========================================
+
+Formato do arquivo
+
+Mouse;10;89.90
+Teclado;5;199.90
+Monitor;3;899.90
+
+Cada linha representa um produto.
+
+=========================================
+
+Funções novas
+
+def carregar_arquivo()
+
+def salvar_arquivo()
+
+=========================================
+
+Desafio Extra
+
+Ao iniciar o sistema mostrar:
+
+"Estoque carregado com sucesso."
+
+ou
+
+"Nenhum arquivo encontrado."
+
+=========================================
+
+Objetivo
+
+Aprender a persistir informações utilizando arquivos de texto.
+
+Depois deste projeto os dados continuarão existindo mesmo após fechar o programa.
