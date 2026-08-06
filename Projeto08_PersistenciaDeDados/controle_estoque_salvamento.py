@@ -107,38 +107,69 @@ def buscar_produto():
         if not busca_produto:
             print("Produto não encontrado!")
 
+def alterar_nome(produto):
+    produto[0] = input("Novo nome: ").title()
+
+def alterar_quantidade(produto):
+    produto[1] = input("Nova quantidade: ")
+
+def alterar_preco(produto):
+    produto[2] = input("Novo preço: ")
+
 def alterar_produto():
+    arquivoexiste()
     cabecalho()
     with open("DataBase.txt", "r", encoding="utf-8") as db:
-        print("Qual produto deseja alterar?")
-        busca_produto = False
-        for linha in db:
-            produto = linha.strip().split(";")
-            print(f"Produto: {produto[0]}")
-        '''alterar = input("Digite aqui: ").strip().title()
-        #for produto in db:
-        if alterar == produto[0]:
-            busca_produto = True
-            print("Item encontrado!")
-            #Novo submenu
-            subselecao = input(("O que deseja alterar?\n") +
-                        ("1 - Alterar o nome\n") +
-                        ("2 - Alterar a quantidade\n") +
-                        ("3 - Alterar preço\n"))
-            if subselecao == "1":
-                produto[0] = input("Qual o novo nome do produto?\n").strip().title()
-                print("Dados alterados com sucesso")
-            elif subselecao == "2":
-                produto[1] = int(input("Qual a nova quantidade do produto?\n"))
-                print("Dados alterados com sucesso")
-            elif subselecao == "3":
-                produto[2] = float(input("Qual o novo valor do produto?\n"))
-                print("Dados alterados com sucesso")
+            print("Qual produto deseja alterar?")
+            print("0 - Cancelar")
+            linhas = db.readlines()
+            for indice, linha in enumerate(linhas):
+                produto = linha.strip().split(";")
+                print(f"{indice+1} - {produto[0]}")
+            alterar = int(input("Digite aqui: "))
+            if alterar == 0:
+                print("Operação cancelada!")
+                return(menu)
             else:
-                print("Opção inválida!")
-    if not busca_produto:
-        print("Nenhum produto encontrado!")'''
+                #print("Item encontrado!")
+                indice = alterar - 1
+                #Novo Submenu
+                subselecao = input(("O que deseja alterar?\n") +
+                            ("1 - Alterar o nome\n") +
+                            ("2 - Alterar a quantidade\n") +
+                            ("3 - Alterar preço\n") + 
+                            ("4 - Cancelar\n"))
+                
+                produto = linhas[indice].strip().split(";")
+                if subselecao == "1":
+                    alterar_nome(produto)
+                    print("Dados alterados com sucesso")
+                elif subselecao == "2":
+                    alterar_quantidade(produto)
+                    print("Dados alterados com sucesso")
+                elif subselecao == "3":
+                    alterar_preco(produto)
+                    print("Dados alterados com sucesso")
+                elif subselecao == "4":
+                    return(menu)
+                else:
+                    print("Opção inválida!")
+                linhas[indice] = ";".join(produto) + "\n"
+                with open("DataBase.txt", "w", encoding="utf-8") as db:
+                    db.writelines(linhas)
 
+def excluir_produto():
+    arquivoexiste()
+    cabecalho()
+    with open("DataBase.txt", "r", encoding="utf-8") as db:
+        print("Qual produto deseja excluir?")
+        linhas = db.readlines()
+        for indice, linha in enumerate(linhas):
+            produto = linha.strip().split(";")
+            print(f"{indice+1} - {produto[0]}")
+        excluir = int(input("Digite aqui: "))
+        print("Item encontrado!")
+        indice = excluir - 1
 #============================================================================================
 while True:
     cabecalho()
@@ -157,8 +188,8 @@ while True:
     elif selecao == "4":
         alterar_produto()
 
-    #elif selecao == "5":
-    #   excluir_produto()
+    elif selecao == "5":
+       excluir_produto()
     
     elif selecao == "6":
         encerrar()
