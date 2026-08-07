@@ -52,7 +52,7 @@ def encerrar():
     print("\nEncerrando o sistema")
 
 def adicionar_produto():
-    with open("DataBase.txt", "a") as db:
+    with open(db, "a") as arquivo:
         while True:
             cabecalho()
             produto = re.sub(r'[^a-zA-Zá-úÁ-Ú]', ' ', input("Qual produto deseja adicionar?\n")).strip().title()
@@ -60,7 +60,7 @@ def adicionar_produto():
             #preco = float(re.sub('[^0-9]', '', (input("Qual o valor do produto?\n"))))
             preco = float(input("Qual o valor do produto? \n"))
             #lista.append([produto, quantidade, preco])
-            db.write(f"{produto};{quantidade};{preco:.2f}\n")
+            arquivo.write(f"{produto};{quantidade};{preco:.2f}\n")
             print("Produto adicionado com sucesso!\n")
             opcao = input("Deseja adicionar mais um produto? S/N\n").strip().lower()
             if opcao != "s":
@@ -72,28 +72,30 @@ def listar_produto():
     #valor total de cada produto
     total_produtos = 0
     arquivoexiste()
-    cabecalho()
-    with open("DataBase.txt", "r", encoding="utf-8") as db:
-        for linha in db:
+    print("==============================")
+    with open(db, "r", encoding="utf-8") as arquivo:
+        for indice, linha in enumerate(arquivo):
             produto = linha.strip().split(";")
             if linha.strip():
-                print(f"Produto: {produto[0]}\n" +
-                      f"Quantidade: {produto[1]}\n" +
-                      f"Valor: R${produto[2]}")
+                print(f"{indice+1} - {produto[0]}\n" +
+                    f"Quantidade: {produto[1]}\n" +
+                    f"preço: R${produto[2]}")
                 total_produtos += 1
                 valor_produtos = int(produto[1]) * float(produto[2])
-                print(f"Valor total do produto em estoque: R${valor_produtos:.2f}\n")
+                print(f"Valor em estoque: R${valor_produtos:.2f}\n")
                 estoque_total += valor_produtos
-    print(f"Valor total do estoque: R${estoque_total:.2f}")
-    print(f"Total de itens encontrados: {total_produtos}\n")
+    print("==============================")
+    print(f"TOTAL DE PRODUTOS: {total_produtos}")
+    print(f"VALOR TOTAL: R${estoque_total:.2f}")
+    print("==============================")
 
 def buscar_produto():
     arquivoexiste()
     cabecalho()
-    with open("DataBase.txt", "r", encoding="utf-8") as db:
+    with open(db, "r", encoding="utf-8") as arquivo:
         busca = input("Qual produto deseja procurar? \n").strip().title()
         busca_produto = False
-        for linha in db:
+        for linha in arquivo:
             produto = linha.strip().split(";")
             if busca == produto[0]:
                 busca_produto = True
@@ -110,19 +112,32 @@ def buscar_produto():
 def alterar_nome(produto):
     produto[0] = input("Novo nome: ").title()
 
+# Primeira utilização de try/except para validar entradas do usuário.
 def alterar_quantidade(produto):
-    produto[1] = input("Nova quantidade: ")
+    while True:
+        try:
+            quantidade = int(input("Nova quantidade: "))
+            produto[1] = str(quantidade)
+            break
+        except ValueError:
+            print("Digite apenas números.")
 
 def alterar_preco(produto):
-    produto[2] = input("Novo preço: ")
+    while True:
+        try:
+            preco = float(input("Novo preço: "))
+            produto[2] = f"{preco:.2f}"
+            break
+        except ValueError:
+            print("Digite um valor válido.")
 
 def alterar_produto():
     arquivoexiste()
     cabecalho()
-    with open("DataBase.txt", "r", encoding="utf-8") as db:
+    with open(db, "r", encoding="utf-8") as arquivo:
             print("Qual produto deseja alterar?")
             print("0 - Cancelar")
-            linhas = db.readlines()
+            linhas = arquivo.readlines()
             for indice, linha in enumerate(linhas):
                 produto = linha.strip().split(";")
                 print(f"{indice+1} - {produto[0]}")
@@ -130,6 +145,9 @@ def alterar_produto():
             if alterar == 0:
                 print("Operação cancelada!")
                 return(menu)
+            elif alterar > len(linhas):
+                print("Produto inexistente!")
+                return
             else:
                 #print("Item encontrado!")
                 indice = alterar - 1
@@ -151,25 +169,37 @@ def alterar_produto():
                     alterar_preco(produto)
                     print("Dados alterados com sucesso")
                 elif subselecao == "4":
-                    return(menu)
+                    return
                 else:
                     print("Opção inválida!")
                 linhas[indice] = ";".join(produto) + "\n"
-                with open("DataBase.txt", "w", encoding="utf-8") as db:
-                    db.writelines(linhas)
+                with open(db, "w", encoding="utf-8") as arquivo:
+                    arquivo.writelines(linhas)
 
 def excluir_produto():
     arquivoexiste()
     cabecalho()
-    with open("DataBase.txt", "r", encoding="utf-8") as db:
+    with open(db, "r", encoding="utf-8") as arquivo:
         print("Qual produto deseja excluir?")
-        linhas = db.readlines()
+        print("0 - Cancelar")
+        linhas = arquivo.readlines()
         for indice, linha in enumerate(linhas):
             produto = linha.strip().split(";")
             print(f"{indice+1} - {produto[0]}")
         excluir = int(input("Digite aqui: "))
-        print("Item encontrado!")
-        indice = excluir - 1
+        if excluir == 0:
+            print("Operação cancelada!")
+            return(menu)
+        elif excluir > len(linhas):
+            print("Opção inválida!\n")
+            return
+        else:
+            indice = excluir - 1
+            produto_removido = linhas.pop(indice)
+            removido = produto_removido.split(";")[0]
+        with open(db, "w", encoding="utf-8") as arquivo:
+            arquivo.writelines(linhas)
+            print(f"Produto '{removido}' excluido com sucesso!")
 #============================================================================================
 while True:
     cabecalho()
@@ -194,3 +224,5 @@ while True:
     elif selecao == "6":
         encerrar()
         break
+    else:
+        print("Opção inválida!\n")
