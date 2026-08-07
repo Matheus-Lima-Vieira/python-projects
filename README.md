@@ -2,81 +2,133 @@
 
 Este repositório reúne os projetos desenvolvidos durante minha jornada de aprendizado em **Python**.
 
-O objetivo não é apenas criar programas funcionais, mas praticar conceitos fundamentais da programação, desenvolver raciocínio lógico e registrar minha evolução projeto após projeto.
-
-Cada aplicação foi construída buscando escrever um código cada vez mais organizado, legível e reutilizável, aplicando boas práticas conforme novos conceitos são aprendidos.
+Meu objetivo é construir uma base sólida em programação, desenvolvendo projetos progressivamente mais completos e registrando minha evolução prática. Cada projeto introduz novos conceitos, desafios e melhorias em relação ao anterior, simulando a evolução natural de um desenvolvedor.
 
 ---
 
-## 🎯 Objetivos
+# 🎯 Objetivos
 
 - Desenvolver lógica de programação
 - Praticar resolução de problemas
 - Aprender estruturas de dados
-- Trabalhar com manipulação de listas e strings
-- Aplicar validações de entrada
-- Consumir APIs
-- Utilizar Expressões Regulares (Regex)
-- Versionar projetos utilizando Git e GitHub
+- Criar programas reutilizáveis e organizados
+- Aplicar boas práticas de programação
+- Aprender persistência de dados
+- Dominar Python antes de avançar para IA e Ciência de Dados
 - Construir um portfólio que demonstre minha evolução
 
 ---
 
-## 📂 Projetos
+# 📂 Projetos
 
-| Projeto | Descrição | Conceitos |
-|---------|-----------|-----------|
-| 📍 Projeto 01 | Consulta de CEP | API REST, JSON, Requests, tratamento de erros |
+| Projeto | Descrição | Principais conceitos |
+|---------|-----------|----------------------|
+| 📍 Projeto 01 | Consulta de CEP | API REST, JSON, Requests, Regex |
 | 💰 Projeto 02 | Controle Financeiro | Variáveis, operadores, cálculos e formatação |
-| 🎬 Projeto 03 | Catálogo de Filmes | Listas, menus, estruturas condicionais |
-| ✅ Projeto 04 | Lista de Tarefas | CRUD em memória, listas, remoção de dados |
-| 📒 Projeto 05 | Agenda Telefônica | CRUD, Regex, validação de dados, busca e remoção |
+| 🎬 Projeto 03 | Catálogo de Filmes | Listas, menus, condicionais |
+| ✅ Projeto 04 | Lista de Tarefas | CRUD em memória, listas e remoção |
+| 📒 Projeto 05 | Agenda Telefônica | CRUD, Regex, validação e busca |
+| 📦 Projeto 06 | Sistema de Estoque | CRUD completo, listas, cálculos e organização |
+| ⚙️ Projeto 07 | Sistema de Estoque Modular | Modularização utilizando funções (`def`) |
+| 💾 Projeto 08 | Sistema de Estoque com Arquivos | Persistência em TXT, leitura e escrita de arquivos |
 
 ---
 
-## 🚀 Tecnologias utilizadas
+# ⭐ Projetos em destaque
+
+## 📦 Projeto 08 — Sistema de Estoque
+
+Primeiro sistema utilizando persistência de dados em arquivos.
+
+Conceitos utilizados:
+
+- Manipulação de arquivos (`open`)
+- Leitura e escrita (`readlines`, `writelines`)
+- CRUD completo
+- Funções
+- Persistência em TXT
+- Tratamento de exceções (`try/except`)
+- Validação de dados
+
+---
+
+## ⚙️ Projeto 07 — Modularização
+
+Refatoração completa do sistema de estoque.
+
+Conceitos utilizados:
+
+- Organização do código
+- Funções (`def`)
+- Separação de responsabilidades
+- Reutilização de código
+
+---
+
+## 📍 Projeto 01 — Consulta de CEP
+
+Primeiro contato com APIs.
+
+Conceitos utilizados:
+
+- Requests
+- JSON
+- Regex
+- Consumo de API REST
+
+---
+
+# 🚀 Tecnologias
 
 - Python 3
 - Git
 - GitHub
-- VS Code
+- Visual Studio Code
 
 ---
 
-## 📚 Conceitos praticados
+# 📚 Conceitos já estudados
 
 - Variáveis
 - Operadores
-- Estruturas condicionais (`if`, `elif`, `else`)
-- Estruturas de repetição (`while` e `for`)
+- Condicionais (`if`, `elif`, `else`)
+- Estruturas de repetição (`for`, `while`)
 - Listas
 - Strings
-- Funções nativas
+- Funções (`def`)
 - Expressões Regulares (Regex)
+- Manipulação de arquivos
+- Pathlib
+- CRUD
 - Consumo de APIs
-- Manipulação de JSON
+- JSON
 - Validação de dados
-- Tratamento de erros
+- Tratamento de exceções (`try/except`)
+- Versionamento com Git e GitHub
 
 ---
 
-## 📈 Evolução
+# 📈 Evolução
 
-Cada projeto representa um novo desafio e foi desenvolvido sem copiar soluções prontas. Sempre que possível, procuro resolver os problemas por conta própria e utilizar a documentação oficial, Stack Overflow e outras fontes apenas para consultar conceitos e sintaxe.
+Este repositório funciona como um diário de evolução em Python.
 
-Meu objetivo é construir uma base sólida em programação antes de avançar para tópicos mais complexos como persistência de dados, orientação a objetos, bancos de dados e desenvolvimento de aplicações maiores.
+Cada projeto foi desenvolvido buscando resolver os problemas com a menor quantidade possível de ajuda direta, utilizando documentação oficial e pesquisas apenas para compreender conceitos e sintaxe.
 
----
-
-## 🔄 Próximos passos
-
-- Persistência de dados em arquivos
-- Funções e modularização
-- Programação Orientada a Objetos (POO)
-- Banco de Dados (SQLite)
-- Testes automatizados
-- Desenvolvimento Web com Python
+Ao longo dos projetos é possível acompanhar a evolução desde programas simples utilizando listas até sistemas completos com persistência de dados, modularização e tratamento de erros.
 
 ---
 
-⭐ Este repositório será atualizado continuamente conforme novos projetos forem sendo desenvolvidos.
+# 🎯 Próximos passos
+
+- 📄 Persistência utilizando JSON
+- 🧱 Programação Orientada a Objetos (POO)
+- 🗄️ SQLite
+- 📊 Pandas
+- 🌐 APIs próprias (Flask/FastAPI)
+- 🤖 Chatbots
+- 📈 Ciência de Dados
+- 🧠 Inteligência Artificial
+
+---
+
+⭐ Este repositório é atualizado continuamente conforme novos projetos são concluídos, registrando minha evolução como desenvolvedor Python.
