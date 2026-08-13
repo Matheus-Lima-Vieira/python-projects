@@ -1,0 +1,27 @@
+[
+    {
+        "produto": "Teclado",
+        "quantidade": 50,
+        "preco": 300.0
+    },
+    {
+        "produto": "Mouse",
+        "quantidade": 50,
+        "preco": 200.0
+    },
+    {
+        "produto": "Monitor",
+        "quantidade": 50,
+        "preco": 800.0
+    },
+    {
+        "produto": "Gabinete",
+        "quantidade": 50,
+        "preco": 400.0
+    },
+    {
+        "produto": "CadeiraGamer",
+        "quantidade": 50,
+        "preco": 1200.0
+    }
+]

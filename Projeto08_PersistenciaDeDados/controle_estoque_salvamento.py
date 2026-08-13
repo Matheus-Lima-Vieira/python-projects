@@ -52,7 +52,7 @@ def encerrar():
     print("\nEncerrando o sistema")
 
 def adicionar_produto():
-    with open(db, "a") as arquivo:
+    with open(db, "a", encoding="utf-8") as arquivo:
         while True:
             cabecalho()
             produto = re.sub(r'[^a-zA-Zá-úÁ-Ú]', ' ', input("Qual produto deseja adicionar?\n")).strip().title()

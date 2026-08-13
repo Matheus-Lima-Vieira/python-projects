@@ -1,0 +1,67 @@
+# Projeto 09 — Estoque com JSON
+
+## Objetivo
+
+Criar uma nova versão do sistema de estoque desenvolvido nos projetos anteriores, substituindo a persistência em arquivo TXT por um arquivo JSON.
+
+O objetivo é aprender a trabalhar com dados estruturados e compreender a diferença entre armazenar informações como texto simples e armazená-las utilizando uma estrutura de dados organizada.
+
+## Funcionalidades
+
+* [ ] Criar/verificar arquivo DataBase.json
+* [ ] Adicionar produto
+* [ ] Listar produtos
+* [ ] Buscar produto
+* [ ] Alterar produto
+* [ ] Remover produto
+* [ ] Sair do sistema
+
+## Conceitos principais
+
+* Importação da biblioteca `json`
+* `json.load()`
+* `json.dump()`
+* Arquivos JSON
+* Listas
+* Dicionários
+* Leitura e escrita de arquivos
+* Persistência de dados
+* Funções
+* Validação de entradas
+* `try/except`
+
+## Estrutura dos dados
+
+Cada produto deverá ser representado por um dicionário contendo:
+
+* produto
+* quantidade
+* preco
+
+Exemplo:
+
+{
+"produto": "Mouse",
+"quantidade": 10,
+"preco": 89.90
+}
+
+Os produtos deverão ser armazenados dentro de uma lista.
+
+## Mini desafios
+
+1. Criar o arquivo JSON caso ele não exista.
+2. Informar quando não houver produtos cadastrados.
+3. Tratar entradas inválidas de quantidade e preço.
+4. Impedir o cadastro de produtos duplicados.
+5. Manter o arquivo JSON organizado e legível.
+
+## Regra do projeto
+
+Evitar simplesmente copiar a implementação do Projeto 08.
+
+O objetivo é entender como a utilização de JSON altera a maneira de armazenar, ler, alterar e remover os dados.
+
+## Resultado esperado
+
+Ao finalizar o projeto, o sistema deverá possuir as mesmas funcionalidades básicas do Projeto 08, porém utilizando JSON como forma de persistência.
