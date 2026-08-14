@@ -150,7 +150,7 @@ def alterar_produto():
                 return
             else:
                 #print("Item encontrado!")
-                indice = alterar - 1
+                indice = alterar -1
                 #Novo Submenu
                 subselecao = input(("O que deseja alterar?\n") +
                             ("1 - Alterar o nome\n") +
