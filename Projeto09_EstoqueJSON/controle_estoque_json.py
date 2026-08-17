@@ -1,11 +1,9 @@
 #json.load() para ler o arquivo
 #json.dump() para gravar o arquivo
-import os
 import re
 import json
 from pathlib import Path
 
-selecao = ()
 db = "DataBase.json"
 DataBase = Path(db)
 
@@ -62,7 +60,11 @@ def adicionar_produto():
                 #Valida se foi digitando um int
                 try:
                     quantidade = int(input("Qual a quantidade desse produto?\n"))
-                    break
+                    if quantidade < 0:
+                        print("Valor não pode ser menor que 0")
+                    else:
+                        produto["quantidade"] = quantidade
+                        break
                 except ValueError:
                     print("Digite apenas números")
             #Loop para pedir o valor
@@ -70,7 +72,11 @@ def adicionar_produto():
                 #Valida se foi digitado um valor float
                 try:
                     preco = float(input("Qual o valor do produto? \n"))
-                    break
+                    if preco < 0:
+                        print("Valor não pode ser menor que 0")
+                    else:
+                        produto["preco"] = preco
+                        break
                 except ValueError:
                     print("Digite apenas números")
             dados.append({"produto": produto,
@@ -125,7 +131,7 @@ def buscar_produto():
         busca_produto = False
         for item in dados:
             #produto = item
-            if busca == item["produto"]:
+            if busca == item["produto".strip().title()]:
                 busca_produto = True
                 total_produto = int(item["quantidade"]) * float(item["preco"])
                 print(("\nProduto encontrado!\n") +
@@ -172,7 +178,8 @@ def alterar_preco(produto):
             print("Digite apenas números")
 
 def alterar_produto():
-    arquivo_existe()
+    if not arquivo_existe():
+        return
     cabecalho()
     with open(db,"r+", encoding="utf-8") as arquivo:
         dados = json.load(arquivo)
@@ -183,12 +190,12 @@ def alterar_produto():
         alterar = int(input("Digite aqui: "))
         if alterar == 0:
             print("Operação cancelada!")
-            return(menu)
+            return
         elif alterar < 1 or alterar > len(dados):
             print("Produto inexistente!")
             return
         else:
-            indice = alterar
+            indice = alterar - 1
             subselecao = input(("O que deseja alterar?\n") +
                         ("1 - Alterar o nome\n") +
                         ("2 - Alterar a quantidade\n") +
@@ -196,17 +203,51 @@ def alterar_produto():
                         ("4 - Cancelar\n"))
             if subselecao == "1":
                 alterar_nome(dados[indice])
+                arquivo.seek(0)
+                json.dump(dados, arquivo, indent=4, ensure_ascii=False)
+                arquivo.truncate()
                 print("Dados alterados com sucesso")
             elif subselecao == "2":
                 alterar_quantidade(dados[indice])
+                arquivo.seek(0)
+                json.dump(dados, arquivo, indent=4, ensure_ascii=False)
+                arquivo.truncate()
                 print("Dados alterados com sucesso")
             elif subselecao == "3":
                 alterar_preco(dados[indice])
+                arquivo.seek(0)
+                json.dump(dados, arquivo, indent=4, ensure_ascii=False)
+                arquivo.truncate()
                 print("Dados alterados com sucesso")
             elif subselecao == "4":
                 return
             else:
                 print("Opção inválida!")
+
+def excluir_produto():
+    if not arquivo_existe():
+        return
+    cabecalho()
+    with open(db, "r+", encoding="utf-8") as arquivo:
+        dados = json.load(arquivo)
+        print("Qual produto deseja excluir?")
+        print("0 - Cancelar")
+        for indice, item in enumerate(dados):
+            print(f"{indice+1} - {item['produto']}")
+        excluir = int(input("Digite aqui: "))
+        if excluir == 0:
+            print("Operação cancelada!")
+            return
+        elif excluir < 0 or excluir > len(dados):
+            print("Opção inválida!\n")
+            return
+        else:
+            indice = excluir - 1
+            produto_removido = dados.pop(indice)
+            arquivo.seek(0)
+            json.dump(dados, arquivo, indent=4, ensure_ascii=False)
+            arquivo.truncate()
+            print(f"Produto '{produto_removido['produto']}' removido com sucesso!")
 
 while True:
     cabecalho()
@@ -225,8 +266,8 @@ while True:
     elif selecao == "4":
         alterar_produto()
 
-#    elif selecao == "5":
-#       excluir_produto()
+    elif selecao == "5":
+       excluir_produto()
     
     elif selecao == "6":
         encerrar()
