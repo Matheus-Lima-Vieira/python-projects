@@ -127,6 +127,7 @@ def listar_produto():
         try:
             dados = json.load(arquivo)
         except json.JSONDecodeError:
+            print("O arquivo JSON está vazio ou inválido.")
             return
             
         if not dados:
@@ -153,6 +154,7 @@ def buscar_produto():
         try:
             dados = json.load(arquivo)
         except json.JSONDecodeError:
+            print("O arquivo JSON está vazio ou inválido.")
             return
             
         busca = input("Qual produto deseja procurar? \n").title()
@@ -220,6 +222,7 @@ def alterar_produto():
         try:
             dados = json.load(arquivo)
         except json.JSONDecodeError:
+            print("O arquivo JSON está vazio ou inválido.")
             return
             
         while True: # <--- NOVO LOOP PRINCIPAL DE ALTERAÇÃO
@@ -282,6 +285,7 @@ def excluir_produto():
         try:
             dados = json.load(arquivo)
         except json.JSONDecodeError:
+            print("O arquivo JSON está vazio ou inválido.")
             return
             
         while True: # <--- NOVO LOOP PARA EXCLUSÃO
