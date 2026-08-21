@@ -1,0 +1,153 @@
+#conexao.commit() Salva as alterações
+#conexao.close() Fecha a conexão com o bando de dados
+import sqlite3
+
+def iniciar():
+    conexao = sqlite3.connect("DataBase.db")
+    db = conexao.cursor()
+
+    db.execute('''
+        CREATE TABLE IF NOT EXISTS produtos (
+            id INTEGER PRIMARY KEY AUTOINCREMENT,
+            produto TEXT NOT NULL,
+            quantidade INTEGER,
+            preco FLOAT
+        )
+    ''')
+    conexao.commit()
+    return conexao, db
+
+def salvar(produto, quantidade, preco):
+    db.execute("INSERT INTO produtos (produto, quantidade, preco) VALUES (?, ?, ?)",
+               (produto, quantidade, preco)
+                )
+    conexao.commit()
+
+def menu(): 
+    print("1 - Adicionar produto\n" \
+        "2 - Listar produtos\n" \
+        "3 - Buscar produto\n" \
+        "4 - Alterar produto\n" \
+        "5 - Remover produto\n" \
+        "6 - Sair\n")
+
+def cabecalho():
+    print("======= ESTOQUE =======")
+
+def adicionado():
+    print("\n================================"
+          "\nProduto adicionado com sucesso!"
+          "\n================================")
+
+def alterado():
+    print("\n=============================="
+          "\n Dados alterados com sucesso!"
+          "\n==============================")
+
+def removido(produto):
+    print("\n=============================="
+          f"\n {produto} removido com sucesso!"
+          "\n==============================")
+
+def encerrar():
+    print("\nEncerrando o sistema")
+
+def adicionar_produto():
+    produtos = db.fetchall()
+    while True:
+        cabecalho()
+        validar()
+        while True:
+            produto = input("Insira o produto: ")
+            if not produto.strip():
+                print("Campo obrigatório!")
+                continue
+            produto_existe = False
+            for linha in produtos:
+                if produto.title() == {linha[0]}:
+                    produto_existe = True
+            if produto_existe == True:
+                print("Produto já cadastrado!")
+                continue
+            else:
+                break
+
+        while True:
+            quantidade = input("Insira a quantidade: ").strip()
+            if quantidade == "":
+                print("Campo obrigatório!")
+                continue
+            try:
+                quantidade = int(quantidade)
+                if quantidade < 0:
+                    print("Valor não pode ser menor que 0")
+                else:
+                    break
+            except ValueError:
+                print("Digite apenas números")
+
+        while True:
+            valor = input("Insira o preço: ").replace(',', '.')
+            if valor == "":
+                print("Campo obrigatório!")
+                continue
+            try:
+                preco = float(valor)
+                if preco < 0:
+                    print("Valor não pode ser menor que 0")
+                else:
+                    break
+            except ValueError:
+                print("Digite apenas números")
+
+        salvar(produto, quantidade, preco)
+        adicionado()
+        opcao = input("Deseja adicionar mais um produto? S/N\n").strip().lower()
+        if opcao != "s":
+            break
+
+def validar():
+    db.execute("SELECT COUNT(*) FROM produtos")
+    validar = db.fetchone()[0]
+    if validar == 0:
+        print("Banco de dados está vazio!")
+    return(True)
+
+def listar_produto():
+    db.execute("SELECT * FROM produtos")
+    produtos = db.fetchall()
+    if validar() == True:
+        for linha in produtos:
+            print(f"{linha[0]} - {linha[1]}")
+
+conexao, db = iniciar()
+while True:
+    cabecalho()
+    menu()
+    selecao = input("Digite a operação desejada: ")
+    
+    if selecao == "1":
+        adicionar_produto()
+
+    elif selecao == "2":
+        listar_produto()
+
+    #elif selecao == "3":
+    #    buscar_produto()
+
+    #elif selecao == "4":
+    #    alterar_produto()
+
+    #elif selecao == "5":
+    #   excluir_produto()
+    
+    elif selecao == "6":
+        encerrar()
+        conexao.close()
+        break
+    elif selecao == "7":
+        db.execute("DELETE FROM produtos")
+        db.execute("UPDATE sqlite_sequence SET seq = 0 WHERE name = 'produtos'")
+        conexao.commit()
+    else:
+        print("Opção inválida!\n")

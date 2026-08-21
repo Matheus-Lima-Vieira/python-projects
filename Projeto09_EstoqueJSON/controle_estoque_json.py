@@ -76,12 +76,12 @@ def adicionar_produto():
             #Loop para pedir a quantidade
             while True:
                 #Valida se foi digitando um int
-                valor = (input("Qual a quantidade desse produto?\n")).strip()
-                if valor == "":
+                quantidade = (input("Qual a quantidade desse produto?\n")).strip()
+                if quantidade == "":
                     print("É necessário preencher a quantidade!")
                     continue
                 try:
-                    quantidade = int(valor)
+                    quantidade = int(quantidade)
                     if quantidade < 0:
                         print("Valor não pode ser menor que 0")
                     else:
