@@ -231,7 +231,7 @@ def alterar_produto():
             print("0 - Cancelar (Voltar ao menu inicial)")
             
             if len(dados) == 0:
-                print("Nenhum produto cadastrado.")
+                print("Nenhum produto cadastrado!")
                 return
                 
             for indice, item in enumerate(dados):

@@ -34,17 +34,17 @@ def menu():
 def cabecalho():
     print("======= ESTOQUE =======")
 
-def adicionado():
+def produto_adicionado():
     print("\n================================"
           "\nProduto adicionado com sucesso!"
           "\n================================")
 
-def alterado():
+def produto_alterado():
     print("\n=============================="
           "\n Dados alterados com sucesso!"
           "\n==============================")
 
-def removido(produto):
+def produto_removido(produto):
     print("\n=============================="
           f"\n {produto} removido com sucesso!"
           "\n==============================")
@@ -58,13 +58,13 @@ def adicionar_produto():
         cabecalho()
         validar()
         while True:
-            produto = input("Insira o produto: ")
+            produto = input("Insira o produto: ").title()
             if not produto.strip():
                 print("Campo obrigatório!")
                 continue
             produto_existe = False
-            for linha in produtos:
-                if produto.title() == {linha[0]}:
+            for item in produtos:
+                if produto.title() == {item[produto]}:
                     produto_existe = True
             if produto_existe == True:
                 print("Produto já cadastrado!")
@@ -101,7 +101,7 @@ def adicionar_produto():
                 print("Digite apenas números")
 
         salvar(produto, quantidade, preco)
-        adicionado()
+        produto_adicionado()
         opcao = input("Deseja adicionar mais um produto? S/N\n").strip().lower()
         if opcao != "s":
             break
@@ -114,13 +114,171 @@ def validar():
     return(True)
 
 def listar_produto():
+    cabecalho()
+    validar()
+    estoque_total = 0
+    total_produtos = 0 
     db.execute("SELECT * FROM produtos")
     produtos = db.fetchall()
     if validar() == True:
-        for linha in produtos:
-            print(f"{linha[0]} - {linha[1]}")
+        for item in produtos:
+            print(f"{item[0]} - {item[1]}")
+
+            total_produtos += 1
+            valor_produtos = (item[2] * item[3])
+            print(f"Valor em estoque: R$ {valor_produtos:.2f}\n")
+            estoque_total += valor_produtos
+
+    print("==============================")
+    print(f"TOTAL DE PRODUTOS: {total_produtos}")
+    print(f"VALOR TOTAL: R${estoque_total:.2f}")
+    print("==============================\n")
+
+def buscar_produto():
+    cabecalho()
+    validar()
+
+    db.execute("SELECT * FROM produtos")
+    produtos = db.fetchall()
+    busca = input("Digite o produto que deseja buscar: ")
+    for item in produtos:
+        if busca.title() == item[1]:
+            total_produto = (item[2] * item[3])
+            print(f"=========================\n"
+                  f"Produto: {item[1]}\n"
+                  f"Quantidade: {item[2]}\n"
+                  f"Preco: {item[3]:.2f}\n"
+                  f"Valor total em estoque: R$ {total_produto:.2f}\n"
+                  f"=========================\n")
+
+def alterar_produto():
+    validar()
+    db.execute("SELECT * FROM produtos")
+    produtos = db.fetchall()
+    while True:
+        cabecalho()
+        print("Qual produto deseja alterar?")
+        print("0 - Cancelar (Voltar para o menu inicial)")
+
+        if len(produtos) == 0:
+            print("Nenhum produto cadastrado!")
+            return
+
+        for item in produtos:
+            print(f"{item[0]} - {item[1]}")
+
+        try:
+            id_produto = int(input("Digite aqui: "))
+            if id_produto == 0:
+                print("Operação cancelada!\n")
+                return
+            elif id_produto < 1 or id_produto > len(produtos):
+                print("Produto inexistente!\n")
+                continue
+            else:
+
+                while True:
+                    subselecao = input("O que deseja alterar?\n"
+                                       "1 - Alterar o nome\n"
+                                       "2 - Alterar a quantidade\n"
+                                       "3 - Alterar o preço\n"
+                                       "4 - Voltar à seleção de produtos\n")
+                    if subselecao == "1":
+                        alterar_nome(id_produto)
+                        produto_alterado()
+                        break
+                    elif subselecao == "2":
+                        alterar_quantidade(id_produto)
+                        produto_alterado()
+                        break
+                    elif subselecao == "3":
+                        alterar_preco(id_produto)
+                        produto_alterado()
+                        break
+                    elif subselecao == "4":
+                        break
+                    else:
+                        print("Opção inválida!\n")
+        except ValueError:
+            print("Digite apenas números!\n")
+
+def alterar_nome(id_produto):
+    while True:
+        nome = input("Novo nome: ").title()
+        if not nome.strip():
+            print("Campo obrigatório!")
+        else:
+            break
+    db.execute("UPDATE produtos SET produto = ? WHERE id = ?", (nome, id_produto))
+    conexao.commit()
+
+
+def alterar_quantidade(id_produto):
+    while True:
+        valor = input("Nova quantidade: ").strip()
+        if not valor:
+            print("Campo obrigatório!")
+            continue
+        try:
+            quantidade = int(valor)
+            if quantidade < 0:
+                print("Quantidade não pode ser menor que 0!")
+            else:
+                break
+        except ValueError:
+            print("Digite apenas números!")
+    db.execute("UPDATE produtos SET quantidade = ? WHERE id = ?", (quantidade, id_produto))
+    conexao.commit()
+
+def alterar_preco(id_produto):
+    while True:
+        valor = input("Novo preço: ").strip()
+        if not valor:
+            print("Campo obrigatório!")
+            continue
+        try:
+            preco = float(valor)
+            if preco < 0:
+                print("Preço não pode ser menor que 0!")
+            else:
+                break
+        except ValueError:
+            print("Digite apenas números!")
+    db.execute("UPDATE produtos SET preco = ? WHERE id = ?", (preco, id_produto))
+    conexao.commit()
+
+def excluir_produto():
+    validar()
+    db.execute("SELECT * FROM produtos")
+    produtos = db.fetchall()
+    while True:
+        cabecalho()
+        print("Qual produto deseja excluir?")
+        print("0 - Cancelar (Voltar para o menu inicial)")
+
+        if len(produtos) == 0:
+            print("Nenhum produto cadastrado!")
+            return
+
+        for item in produtos:
+            print(f"{item[0]} - {item[1]}")
+
+        try:
+            id_produto = int(input("Digite aqui: "))
+            if id_produto == 0:
+                print("Operação cancelada!\n")
+                return
+            else:
+                db.execute("DELETE FROM produtos WHERE id = ?", (id_produto,))
+                conexao.commit()
+                print("Produto removido com sucesso!")
+                return
+        except ValueError:
+            print("Digite apenas números!")
+
 
 conexao, db = iniciar()
+#LOOP principal ↓↓↓↓↓↓
 while True:
     cabecalho()
     menu()
@@ -132,19 +290,20 @@ while True:
     elif selecao == "2":
         listar_produto()
 
-    #elif selecao == "3":
-    #    buscar_produto()
+    elif selecao == "3":
+        buscar_produto()
 
-    #elif selecao == "4":
-    #    alterar_produto()
+    elif selecao == "4":
+        alterar_produto()
 
-    #elif selecao == "5":
-    #   excluir_produto()
+    elif selecao == "5":
+       excluir_produto()
     
     elif selecao == "6":
         encerrar()
         conexao.close()
         break
+    #Reseta o banco de dados para testes ↓
     elif selecao == "7":
         db.execute("DELETE FROM produtos")
         db.execute("UPDATE sqlite_sequence SET seq = 0 WHERE name = 'produtos'")
