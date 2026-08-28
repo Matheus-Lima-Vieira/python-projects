@@ -1,0 +1,43 @@
+========= BIBLIOTECA =========
+
+1 - Cadastrar livro
+2 - Listar livros
+3 - Cadastrar usuário
+4 - Listar usuários
+5 - Emprestar livro
+6 - Devolver livro
+7 - Buscar livro
+8 - Sair
+
+Livro
+ ├── título
+ ├── autor
+ ├── ano
+ └── disponível
+
+Usuario
+ ├── nome
+ └── id
+
+Biblioteca
+ ├── livros
+ ├── usuarios
+ ├── cadastrar_livro()
+ ├── cadastrar_usuario()
+ ├── emprestar_livro()
+ └── devolver_livro()
+
+ class Livro: #TUDO que for livro vai ter as características abaixo
+    def __init__(self, titulo, autor, ano): # Método construtor para inicializar os atributos
+        self.titulo = titulo
+        self.autor = autor
+        self.ano = ano
+
+    def descricao(self):    # Método da classe (comportamento)
+        return f"{self.titulo} {self.autor}, ano {self.ano}"
+
+meu_livro = Livro("Harry Potter", "J. K. Rowling", 1997)    # Criando um objeto (instância) da classe
+
+print(meu_livro.descricao())    # Usando o método do objeto
+
+#Harry Potter J. K. Rowling, ano 1997   #Saída no console
