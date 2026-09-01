@@ -21,9 +21,10 @@ class Livro:
             print("Livro já está disponível.")
 
 class Cliente:
-    def __init__(self, cliente_id, nome):
+    def __init__(self, cliente_id, nome, rg):
         self.cliente_id = cliente_id
         self.nome = nome
+        self.rg = rg
 
 livros = [
     Livro(1, "Harry Potter", "J. K. Rowling", 1997, True),
@@ -31,10 +32,11 @@ livros = [
 ]
 
 clientes = [
-    Cliente(1, "Matheus"), 
-    Cliente(2, "Pedro")
+    Cliente(1, "Matheus", 508175604), 
+    Cliente(2, "Pedro", 508175605)
 ]
 
+titulo_biblioteca = "BIBLIOTECA GATO PRETO"
 def desenhar_menu(titulo_biblioteca, opcoes):
     tamanho = 40  # Largura da caixa
 
@@ -63,18 +65,14 @@ opcoes_livros = [
     "Emprestar livro",
     "Devolver livro",
     "Buscar livro",
-    "Sair",
+    "Voltar ao menu anterior",
 ]
 
 opcoes_usurios = [
     "Cadastrar novo usuário",
     "Listar usuários",
-    "Sair",
+    "Voltar ao menu anterior",
 ]
-
-# desenhar_menu("BIBLIOTECA GATO PRETO", opcoes_principal)
-# desenhar_menu("BIBLIOTECA GATO PRETO", opcoes_livros)
-# desenhar_menu("BIBLIOTECA GATO PRETO", opcoes_usurios)
 
 def cadastrar_livro():
     tamanho = 40
@@ -135,11 +133,9 @@ def emprestar_livro():
         for livro in livros:
             if titulo_buscado == livro.titulo:
                 livro_encontrado = True
-                # Chama o método que você já criou dentro da classe Livro!
                 livro.emprestar()
-                break  # Para o loop pois já achou o livro
+                break
 
-        # Se rodou todos os livros e não achou o título:
         if not livro_encontrado:
             print("Livro não encontrado no sistema.")
         
@@ -154,11 +150,9 @@ def devolver_livro():
         for livro in livros:
             if titulo_buscado == livro.titulo:
                 livro_encontrado = True
-                # Chama o método que você já criou dentro da classe Livro!
                 livro.devolver()
-                break  # Para o loop pois já achou o livro
+                break
 
-        # Se rodou todos os livros e não achou o título:
         if not livro_encontrado:
             print("Livro não encontrado no sistema.")
 
@@ -166,20 +160,19 @@ def cadastrar_cliente():
     tamanho = 40
 
     print(f"╔{'═' * tamanho}╗")
-    print(f"║{'CADASTRAR NOVO LIVRO'.center(tamanho)}║")
+    print(f"║{'CADASTRAR NOVO CLIENTE'.center(tamanho)}║")
     print(f"╠{'═' * tamanho}╣")
     ##############################################################
-    titulo = input("║ Título: ")
-    autor = input("║ Autor: ")
-    ano = input("║ Ano: ")
+    nome = input("║ Nome: ")
+    rg = input("║ RG: ")
     ##############################################################
     print(f"╚{'═' * tamanho}╝")
     ##############################################################
-    novo_livro = Livro(len(livros) + 1, titulo, autor, int(ano), True)
-    livros.append(novo_livro)
+    novo_cliente = Cliente(len(clientes) + 1, nome, int(rg))
+    clientes.append(novo_cliente)
     ##############################################################
     print(f"╔{'═' * tamanho}╗")
-    print(f"║{'LIVRO CADASTRADO COM SUCESSO!'.center(tamanho)}║")
+    print(f"║{'CLIENTE CADASTRADO COM SUCESSO!'.center(tamanho)}║")
     print(f"╚{'═' * tamanho}╝")
 
 
@@ -189,12 +182,57 @@ def listar_clientes():
     if not clientes:
         print("Nenhum livro cadastrado!")
     else:
+        print(f"╔{'═' * tamanho}╗")
+        print(f"║{'CLIENTES'.center(tamanho)}║")
+        print(f"╠{'═' * tamanho}╝")
         for cliente in clientes:
-            print(f"╔{'═' * tamanho}╗")
-            print(f"║{'CLIENTES'.center(tamanho)}║")
-            print(f"╠{'═' * tamanho}╝")
             print(f"║ID: {cliente.cliente_id}")
             print(f"║Nome: {cliente.nome}")
-            print(f"╠{'═' * tamanho}╝")
+            print(f"║RG: {cliente.rg}")
+            print(f"╚{'═' * tamanho}╝")
 
-listar_clientes()
+def encerrar():    
+    tamanho = 40
+
+    print(f"╔{'═' * tamanho}╗")
+    print(f"║{titulo_biblioteca.center(tamanho)}║")
+    print(f"╠{'═' * tamanho}╣")
+    texto = "Obrigado por usar nosso sistema!"
+    print(f"║{texto.center(tamanho)}║")
+    print(f"╚{'═' * tamanho}╝")
+
+# #=============================================================================#
+while True:
+    desenhar_menu(titulo_biblioteca, opcoes_principal)
+    opcao = input("Digite a opção desejada: ")
+    if opcao == "1":
+        while True:
+            desenhar_menu(titulo_biblioteca, opcoes_livros)
+            opcao = input("Digite a opção desejada: ")
+            if opcao == "1":
+                cadastrar_livro()
+            elif opcao == "2":
+                listar_livros()
+            elif opcao == "3":
+                emprestar_livro()
+            elif opcao == "4":
+                devolver_livro()
+            elif opcao == "5":
+                buscar_livro()
+            elif opcao == "6":
+                break
+    elif opcao == "2":
+        while True:
+            desenhar_menu(titulo_biblioteca, opcoes_usurios)
+            opcao = input("Digite a opção desejada: ")
+            if opcao == "1":
+                cadastrar_cliente()
+            elif opcao == "2":
+                listar_clientes()
+            elif opcao == "3":
+                break
+    elif opcao =="3":
+        encerrar()
+        break
+    else:
+        print("Opção inválida!")
